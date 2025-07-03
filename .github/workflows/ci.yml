@@ -158,8 +158,7 @@ jobs:
         working-directory: ${{ env.FLINK_CACHE_DIR }}
         if: steps.restore-cache-flink.outputs.cache-hit != 'true'
         run: |
-          wget -q -c ${{ env.binary_url }}
-          tar -xzf ${{ env.binary_filename }}
+          wget -q -c ${{ env.binary_url }} -O - | tar -xz
 
       - name: Cache Flink binary
         if: ${{ env.cache_binary == 'true' }}
